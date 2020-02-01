@@ -1,0 +1,23 @@
+<!--pages/post/post.wxml-->
+<import src="../../wxParse/wxParse.wxml" />
+<wxs src="../../utils/common.wxs" module="tools" />
+
+<view>
+  <mp-toptips msg="{{topTipsMsg}}" type="{{topTipsType}}" show="{{topTipsMsg}}"></mp-toptips>
+
+  <view wx:if="{{loading}}">
+    <mp-loading type="circle" show="{{loading}}"></mp-loading>
+  </view>
+  <view wx:else style="width:100%;">
+    <view style="padding: 32rpx 48rpx">
+      <view class="post-title">{{title}}</view>
+      <view class="post-info">{{tools.dateFormat(postTime,'yyyy.MM.dd')}}，标签：
+        <block wx:for="{{topics}}" wx:key="this" wx:for-item="value" wx:for-index="index">
+          <block wx:if="{{index !== topics.length-1}}">{{value}}/</block>
+          <block wx:else>{{value}}</block>
+        </block>，阅读：{{pv}}</view>
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
+    <button style="font-size:24rpx;margin-bottom:24rpx" open-type="share" type="primary" size="default" data-post-id="{{postId}}" data-title="{{title}}">分享</button>
+  </view>
+</view>

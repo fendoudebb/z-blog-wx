@@ -1,0 +1,305 @@
+
+/**
+ * author: Di (微信小程序开发工程师)
+ * organization: WeAppDev(微信小程序开发论坛)(http://weappdev.com)
+ *               垂直微信小程序开发交流社区
+ * 
+ * github地址: https://github.com/icindy/wxParse
+ * 
+ * for: 微信小程序富文本解析
+ * detail : http://weappdev.com/t/wxparse-alpha0-1-html-markdown/184
+ */
+
+.wxParse{
+    margin: 0 10rpx;
+    font-family: Helvetica,sans-serif;
+    font-size: 28rpx;
+    color: #666;
+    line-height: 1.8;
+}
+view{
+    word-break:break-all; overflow:auto;
+}
+.wxParse-inline{
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+/*//标题 */
+.wxParse-div{margin: 0;padding: 0;}
+
+.wxParse-h1 {
+	font-size: 38rpx;
+}
+.wxParse-h2 {
+	font-size: 34rpx;
+	padding-bottom: 10rpx;
+	margin-top: 50rpx;
+	margin-bottom: 20rpx;
+	border-bottom: 1rpx solid #ececec;
+}
+.wxParse-h3 {
+	font-size: 28rpx;
+	margin-top: 50rpx;
+	margin-bottom: 20rpx;
+}
+.wxParse-h4 {
+	font-size: 26rpx;
+	margin-top: 30rpx;
+	margin-bottom: 16rpx;
+}
+.wxParse-h5 {
+	font-size: 24rpx;
+	margin-top: 24rpx;
+	margin-bottom: 12rpx;
+}
+.wxParse-h6 {
+	font-size: 24rpx;
+	margin-top: 18rpx;
+	margin-bottom: 8rpx;
+}
+
+.wxParse-h1, .wxParse-h2, .wxParse-h3, .wxParse-h4, .wxParse-h5, .wxParse-h6, .wxParse-b, .wxParse-strong  { font-weight: bolder }
+
+.wxParse-p {
+	display: block;
+	font-size: 26rpx;
+	margin-top: 26rpx;
+	margin-bottom: 26rpx
+}
+
+.wxParse-p view{
+	vertical-align:middle; 
+}
+
+.wxParse-i,.wxParse-cite,.wxParse-em,.wxParse-var,.wxParse-address{font-style:italic}
+.wxParse-pre,.wxParse-tt,.wxParse-code,.wxParse-kbd,.wxParse-samp{font-family:monospace}
+.wxParse-pre{
+	white-space:pre;
+	display: block;
+	overflow-y: hidden;
+	overflow-x: auto;
+}
+.wxParse-big{font-size:1.17em}
+.wxParse-small,.wxParse-sub,.wxParse-sup{font-size:.83em}
+.wxParse-sub{vertical-align:sub}
+.wxParse-sup{vertical-align:super}
+.wxParse-s,.wxParse-strike,.wxParse-del{text-decoration:line-through}
+/*wxparse-自定义个性化的css样式*/
+/*增加video的css样式*/
+.wxParse-strong,.wxParse-s{display: inline}
+.wxParse-a{
+    color: deepskyblue;
+    word-break:break-all;
+    overflow:auto;
+}
+
+.wxParse-video{
+    text-align: center;
+    margin: 20rpx 0;
+}
+
+.wxParse-video-video{
+    width:100%;
+}
+
+.wxParse-img{
+    /*background-color: #efefef;*/
+    overflow: hidden;
+}
+
+.wxParse-blockquote {
+	margin: 28rpx 0;
+	padding: 28rpx;
+	font-size: 28rpx;
+	border-left: 6rpx solid #4CAF50;
+	background-color: #F6F6F6;
+	color: #999;
+}
+
+.wxParse-blockquote .wxParse-p {
+	line-height: 1.6;
+	word-wrap: break-word;
+	margin: 0;
+}
+
+.wxParse-p .wxParse-wxxxcode-style{
+	display: inline-block;
+}
+
+.wxParse-li-text .wxParse-wxxxcode-style{
+	display: inline-block;
+}
+
+.wxParse-code,.wxParse-wxxxcode-style{
+	display: block;
+	padding: 2rpx 3rpx;
+	background: rgba(27,31,35,.05);
+	border-radius: 4rpx;
+}
+
+.wxParse-code::before, .wxParse-code::after {
+	letter-spacing: -.2em;
+	content: "\00a0";
+}
+
+.wxParse-wxxxcode-style::before, .wxParse-wxxxcode-style::after {
+	letter-spacing: -.2em;
+	content: "\00a0";
+}
+
+.wxParse-pre .wxParse-code {
+	display: block;
+	border-radius: 6rpx;
+	white-space: pre;
+	word-wrap: normal;
+	padding: 16rpx 24rpx !important;
+	line-height: 40rpx;
+	font-family: Courier New, Courier,monospace;
+	font-size: 24rpx;
+}
+
+.wxParse-pre .wxParse-wxxxcode-style {
+	display: block;
+	border-radius: 6rpx;
+	white-space: pre;
+	word-wrap: normal;
+	padding: 16rpx 24rpx !important;
+	line-height: 40rpx;
+	font-family: Courier New, Courier,monospace;
+	font-size: 24rpx;
+}
+
+.wxParse-pre .wxParse-code::before, .wxParse-pre .wxParse-code::after {
+	letter-spacing: 0;
+	content: '';
+}
+
+.wxParse-pre .wxParse-wxxxcode-style::before, .wxParse-pre .wxParse-wxxxcode-style::after {
+	letter-spacing: 0;
+	content: '';
+}
+
+.wxParse-li {
+	font-size: 28rpx;
+}
+
+.wxParse-li view {
+	vertical-align:middle; 
+}
+
+.wxParse-ul .wxParse-li{
+	list-style-type: disc;
+	margin: 0 0 0 30rpx;
+}
+
+.wxParse-ol .wxParse-li{
+	list-style-type: decimal;
+	margin: 0 0 0 30rpx;
+}
+		
+.wxParse-li .wxParse-ol, .wxParse-li .wxParse-ul {
+	margin: 20rpx 0;
+}
+
+.wxParse-li .wxParse-li {
+	list-style-type: circle;
+}
+
+.wxParse-li .wxParse-li .wxParse-li {
+	list-style-type: square;
+}
+
+.wxParse-li,.wxParse-li-inner{
+    display: flex;
+    align-items: baseline;
+    margin: 10rpx 0;
+}
+
+.wxParse-li-text{
+    align-items: center;
+    line-height: 40rpx;
+}
+
+.wxParse-li-circle{
+    display: inline-flex;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #333;
+    margin-right: 20rpx;
+}
+
+.wxParse-li-square{
+    display: inline-flex;
+    width: 10rpx;
+    height: 10rpx;
+    background-color: #333;
+    margin-right: 5px;
+}
+.wxParse-li-ring{
+    display: inline-flex;
+    width: 10rpx;
+    height: 10rpx;
+    border: 2rpx solid #333;
+    border-radius: 50%;
+    background-color: #fff;
+    margin-right: 5px;
+}
+
+/*.wxParse-table{
+    width: 100%;
+    height: 400px;
+}
+.wxParse-thead,.wxParse-tfoot,.wxParse-tr{
+    display: flex;
+    flex-direction: row;
+}
+.wxParse-th,.wxParse-td{
+    display: flex;
+    width: 580px;
+    overflow: auto;
+}*/
+
+.wxParse-u {
+  text-decoration: underline;
+}
+.wxParse-hide{
+    display: none;
+}
+.WxEmojiView{
+    align-items: center;
+}
+.wxEmoji{
+    width: 16px;
+    height:16px;
+}
+.wxParse-thead {
+	border-right:1rpx solid #e9eaec;
+}
+.wxParse-tr{
+	display: flex;
+	border-right:1rpx solid #e9eaec;
+	border-bottom:1rpx solid #e9eaec;
+}
+.wxParse-th,
+.wxParse-td{
+	flex:1;
+	padding:10rpx;
+	font-size:28rpx;
+	border-left:1rpx solid #e9eaec;
+	word-break: break-all;
+}
+.wxParse-td:last{
+	border-top:1rpx solid #e9eaec;
+}
+.wxParse-th{
+	background:#F8F8F9;
+	border-top:1rpx solid #e9eaec;
+}
+.wxParse-del{
+    display: inline;
+}
+.wxParse-figure {
+  overflow: hidden;
+}

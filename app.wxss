@@ -1,0 +1,32 @@
+@import './miniprogram_npm/weui-miniprogram/weui-wxss/dist/style/weui.wxss';
+
+/**app.wxss**/
+::-webkit-scrollbar{
+width: 0;
+height: 0;
+color: transparent;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.shadow {
+  border-radius: 4rpx;
+  box-shadow: 0 14rpx 0 0 rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+

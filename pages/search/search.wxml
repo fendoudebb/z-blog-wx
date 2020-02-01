@@ -1,0 +1,44 @@
+<!--pages/search/search.wxml-->
+<wxs module="m1">
+  var temp = function(value) {
+    value = value.replace(getRegExp('<em', 'g'), '<em class="search-em"');
+    return value;
+  }
+  module.exports.format = temp;
+</wxs>
+<view>
+
+  <mp-toptips msg="{{topTipsMsg}}" type="{{topTipsType}}" show="{{topTipsMsg}}"></mp-toptips>
+
+  <view style="margin:20rpx 0" class="search-bar sticky">
+    <view class="search-box">
+      <view class="search-bar">
+        <icon type='search' size="32rpx"></icon>
+        <input type="text" placeholder='搜索' confirm-type="search" focus="{{focus}}" bindinput="bindKeyInput" bindconfirm="bindConfirmEvent" />
+      </view>
+    </view>
+  </view>
+
+  <block wx:for="{{hits}}" wx:key="this">
+    <navigator url="/pages/post/post?from=search&postId={{item.postId}}" hover-class="navigator-hover">
+      <view class="shadow index-post-item">
+        <rich-text class="index-post-title ellipsis" nodes="{{m1.format(item.title)}}"></rich-text>
+        <rich-text class="index-post-desc" nodes="{{m1.format(item.content)}}"></rich-text>
+        <text class="index-post-info">{{item.postTime}}，标签：<block wx:for="{{item.topics}}" wx:key="this" wx:for-item="value" wx:for-index="index"><block wx:if="{{index !== item.topics.length-1}}">{{value}}/</block><block wx:else>{{value}}</block></block></text>
+      </view>
+    </navigator>
+  </block>
+
+  <view>
+    <!-- <mp-loading type="circle"></mp-loading> -->
+    <!-- <mp-loading type="dot-white"></mp-loading> -->
+    <mp-loading type="circle" show="{{loading}}"></mp-loading>
+  </view>
+
+  <view class='main_view' wx:if="{{noMoreData}}">
+    <text class='befor'></text>
+    <text class='reason_txt'>我也是有底线的</text>
+    <text class='after'></text>
+  </view>
+
+</view>

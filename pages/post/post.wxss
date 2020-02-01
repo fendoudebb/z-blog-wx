@@ -1,0 +1,25 @@
+/* pages/post/post.wxss */
+@import "../../wxParse/wxParse.wxss";
+
+.post-title {
+  font-weight: bold;
+	padding-bottom: 10rpx;
+	border-bottom: 1rpx solid #ececec;
+}
+
+.post-info {
+  width:100%;
+  font-size: 24rpx;
+  margin: 10rpx 0 0 0;
+  color: #8a8a8a;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal !important;
+}
+
+.post-divider {
+  margin: 4rpx;
+  height:2rpx;
+  background:rgba(0, 0, 0, 0.1)
+}
