@@ -32,12 +32,12 @@ function wxParse(bindName = 'wxParseData', type='html', data='<div class="color:
   var that = target;
   var transData = {};//存放转化后的数据
   if (type == 'html') {
-    transData = HtmlToJson.html2json(data, bindName);
+    transData = HtmlToJson.html2json(data, bindName, that);
     //console.log(JSON.stringify(transData, ' ', ' '));
   } else if (type == 'md' || type == 'markdown') {
     var converter = new showdown.Converter();
     var html = converter.makeHtml(data);
-    transData = HtmlToJson.html2json(html, bindName);
+    transData = HtmlToJson.html2json(html, bindName, that);
     //console.log(JSON.stringify(transData, ' ', ' '));
   }
   transData.view = {};

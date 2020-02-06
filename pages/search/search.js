@@ -1,4 +1,7 @@
 // pages/search/search.js
+
+const app = getApp()
+
 Page({
 
   /**
@@ -68,7 +71,7 @@ Page({
     })
 
     wx.request({
-      url: 'https://www.zhangbj.com/m/search/' + that.data.inputValue,
+      url: app.globalData.urlPrefix + '/m/search/' + that.data.inputValue,
       data: {
         page: that.data.currentPage + 1,
         size: 10
@@ -136,7 +139,7 @@ Page({
     });
 
     wx.request({
-      url: 'https://www.zhangbj.com/m/search/' + that.data.inputValue,
+      url: app.globalData.urlPrefix + '/m/search/' + that.data.inputValue,
       data: {
         page: 1,
         size: 10

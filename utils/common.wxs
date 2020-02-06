@@ -1,3 +1,7 @@
+var log = function (value) {
+  console.log(JSON.stringify(value));
+}
+
 var formatNumber = function (n) {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -75,8 +79,16 @@ function getDateDiff(dateTimeStamp) {
   return result;
 };
 
+var formatDesc = function (value) {
+  value = value.replace(getRegExp('\r\n', 'g'), " ");
+  value = value.replace(getRegExp('\n', 'g'), " ");
+  return value;
+}
+
 //tools.dateFormat(item.postTime.$date.$numberLong,'yyyy.MM.dd')
 module.exports = {
+  log: log,
   dateFormat: dateFormat,
-  getDateDiff: getDateDiff
+  getDateDiff: getDateDiff,
+  formatDesc: formatDesc
 };

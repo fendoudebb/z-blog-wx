@@ -7,8 +7,8 @@
 .search-box {
   width: 100%;
   background: #fff;
-  height: 64rpx;
-  padding: 4rpx 20rpx;
+  height: 72rpx;
+  padding: 0 20rpx;
   display: flex;
   align-items: center;
 }

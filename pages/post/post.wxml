@@ -5,19 +5,25 @@
 <view>
   <mp-toptips msg="{{topTipsMsg}}" type="{{topTipsType}}" show="{{topTipsMsg}}"></mp-toptips>
 
-  <view wx:if="{{loading}}">
-    <mp-loading type="circle" show="{{loading}}"></mp-loading>
-  </view>
-  <view wx:else style="width:100%;">
+  <view wx:if="{{!loading}}">
     <view style="padding: 32rpx 48rpx">
       <view class="post-title">{{title}}</view>
-      <view class="post-info">{{tools.dateFormat(postTime,'yyyy.MM.dd')}}，标签：
-        <block wx:for="{{topics}}" wx:key="this" wx:for-item="value" wx:for-index="index">
-          <block wx:if="{{index !== topics.length-1}}">{{value}}/</block>
-          <block wx:else>{{value}}</block>
-        </block>，阅读：{{pv}}</view>
+      <block wx:for="{{topics}}" wx:key="this" wx:for-item="value" wx:for-index="index">
+        <view class="badge-a">{{value}}</view>
+      </block>
+      <view class="badge-a" wx:if="{{commentCount > 0}}">评论 {{commentCount}}</view>
+      <text class="text-secondary" style="margin-left: 16rpx!important;">大约 {{postWordCount}} 字</text>
       <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+
+      <view class="text-secondary" style="margin-top:40rpx">阅读 {{pv}} · 发布于 {{tools.dateFormat(postTime,'yyyy-MM-dd')}}</view>
     </view>
-    <button style="font-size:24rpx;margin-bottom:24rpx" open-type="share" type="primary" size="default" data-post-id="{{postId}}" data-title="{{title}}">分享</button>
+
+    <view style="margin:32rpx 36rpx;">
+      <button style="width:40%;font-size:24rpx;display:inline-block;" open-type="share" type="primary" size="default" data-post-id="{{postId}}" data-title="{{title}}">分享</button>
+      <view style="width:20%;display:inline-block"></view>
+      <button open-type="contact" show-message-card send-message-title="{{title}}" session-from="/pages/post/post?from=contact&postId={{postId}}" send-message-path="/pages/post/post?from=contact&postId={{postId}}" bindcontact="handleContact" style="width:40%;font-size:24rpx;display:inline-block;background:rgba(27,31,35,.05)">联系管理员</button>
+    </view>
   </view>
+  
+  <official-account style="width:100%;height:168rpx;{{loading ? 'display:none' : 'display:visible'}}" bindload="bindLoad" binderror="bindError"></official-account>
 </view>

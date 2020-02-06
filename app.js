@@ -34,6 +34,8 @@ App({
     // })
   },
   globalData: {
+    // urlPrefix: 'https://www.zhangbj.com',
+    urlPrefix: 'http://192.168.0.112',
     userInfo: null
   }
 })

@@ -18,6 +18,7 @@ var __emojisBaseSrc = '';
 var __emojis = {};
 var wxDiscode = require('./wxDiscode.js');
 var HTMLParser = require('./htmlparser.js');
+var highlight = require('./highlight.js');
 // Empty Elements - HTML 5
 var empty = makeMap("area,base,basefont,br,col,frame,hr,img,input,link,meta,param,embed,command,keygen,source,track,wbr");
 // Block Elements - HTML 5
@@ -34,7 +35,7 @@ var closeSelf = makeMap("colgroup,dd,dt,li,options,p,td,tfoot,th,thead,tr");
 var fillAttrs = makeMap("checked,compact,declare,defer,disabled,ismap,multiple,nohref,noresize,noshade,nowrap,readonly,selected");
 
 // Special Elements (can contain anything)
-var special = makeMap("wxxxcode-style,script,style,view,scroll-view,block");
+var special = makeMap("script,style,view,scroll-view,block");
 function makeMap(str) {
     var obj = {}, items = str.split(",");
     for (var i = 0; i < items.length; i++)
@@ -61,11 +62,12 @@ function trimHtml(html) {
         // .replace(/[ ]+</ig, '<')
 }
 
-function html2json(html, bindName) {
+function html2json(html, bindName, that) {
     //处理字符串
     html = removeDOCTYPE(html);
     html = trimHtml(html);
     html = wxDiscode.strDiscode(html);
+    html = highlight.highlight(html, that);
     //生成node节点
     var bufArray = [];
     var results = {
@@ -139,6 +141,13 @@ function html2json(html, bindName) {
 
                     return pre;
                 }, {});
+            }
+
+            if (node.tag === 'pre') {
+              if (that.wxParseCodeIndex == undefined) {
+                that.wxParseCodeIndex=[]
+              }
+              that.wxParseCodeIndex.push(node.index)
             }
 
             //对img添加额外数据
@@ -255,7 +264,9 @@ function html2json(html, bindName) {
 function transEmojiStr(str){
   // var eReg = new RegExp("["+__reg+' '+"]");
 //   str = str.replace(/\[([^\[\]]+)\]/g,':$1:')
-  
+    str = str.replace(/&lt;/g, '<');
+    str = str.replace(/&gt;/g, '>');
+    str = str.replace(/&amp;/g, '&');
   var emojiObjs = [];
   //如果正则表达式为空
   if(__emojisReg.length == 0 || !__emojis){

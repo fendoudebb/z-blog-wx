@@ -33,7 +33,7 @@ var closeSelf = makeMap("colgroup,dd,dt,li,options,p,td,tfoot,th,thead,tr");
 var fillAttrs = makeMap("checked,compact,declare,defer,disabled,ismap,multiple,nohref,noresize,noshade,nowrap,readonly,selected");
 
 // Special Elements (can contain anything)
-var special = makeMap("wxxxcode-style,script,style,view,scroll-view,block");
+var special = makeMap("script,style,view,scroll-view,block");
 
 function HTMLParser(html, handler) {
 	var index, chars, match, stack = [], last = html;

@@ -9,6 +9,8 @@
  * detail : http://weappdev.com/t/wxparse-alpha0-1-html-markdown/184
  */-->
 
+<wxs src="../utils/common.wxs" module="tools" />
+
 <!--基础元素-->
 <template name="wxParseVideo">
   <!--增加video标签支持，并循环添加-->
@@ -18,8 +20,7 @@
 </template>
 
 <template name="wxParseImg">
-  <image class="{{item.classStr}} wxParse-{{item.tag}}" data-from="{{item.from}}" data-src="{{item.attr.src}}" data-idx="{{item.imgIndex}}" src="{{item.attr.src}}" mode="aspectFit" bindload="wxParseImgLoad" bindtap="wxParseImgTap" mode="widthFix" style="width:{{item.width}}px;"
-  />
+  <image class="{{item.classStr}} wxParse-{{item.tag}}" data-from="{{item.from}}" data-src="{{item.attr.src}}" data-idx="{{item.imgIndex}}" src="{{item.attr.src}}" bindload="wxParseImgLoad" bindtap="wxParseImgTap" mode="widthFix" style="max-width:100%" />
 </template>
 
 <template name="WxEmojiView">
@@ -93,7 +94,19 @@
       </view>
     </block>
     <block wx:elif="{{item.tag == 'table'}}">
-      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+      <view class="wxParse-table-area">
+        <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
+          <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="this">
+            <template is="wxParse1" data="{{item}}" />
+          </block>
+        </view>
+      </view>
+    </block>
+
+    <!--code标签, wxParse把他解析成为wxParse-pre下wxParse-code(``解析成wxParse-code)-->
+    <block wx:elif="{{item.tag == 'pre'}}">
+    <!--<block>{{tools.log(item)}}</block>-->
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}" bindlongpress="longPress" data-code-index="{{item.index}}">
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="this">
           <template is="wxParse1" data="{{item}}" />
         </block>
@@ -178,6 +191,15 @@
       </view>
     </block>
 
+    <!--code标签, wxParse把他解析成为pre-->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}" bindlongpress="longPress" data-content="{{item.nodes[0].nodes[0].text}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="this">
+          <template is="wxParse1" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
     <block wx:elif="{{item.tag == 'br'}}">
       <template is="WxParseBr"></template>
     </block>
@@ -251,6 +273,15 @@
       <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="this">
           <template is="wxParse3" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <!--code标签, wxParse把他解析成为pre-->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}" bindlongpress="longPress" data-content="{{item.nodes[0].nodes[0].text}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="this">
+          <template is="wxParse1" data="{{item}}" />
         </block>
       </view>
     </block>
@@ -331,6 +362,15 @@
       </view>
     </block>
 
+    <!--code标签, wxParse把他解析成为pre-->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}" bindlongpress="longPress" data-content="{{item.nodes[0].nodes[0].text}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="this">
+          <template is="wxParse1" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
     <block wx:elif="{{item.tag == 'br'}}">
       <template is="WxParseBr"></template>
     </block>
@@ -403,6 +443,15 @@
       <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="this">
           <template is="wxParse5" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <!--code标签, wxParse把他解析成为pre-->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}" bindlongpress="longPress" data-content="{{item.nodes[0].nodes[0].text}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="this">
+          <template is="wxParse1" data="{{item}}" />
         </block>
       </view>
     </block>
@@ -483,6 +532,15 @@
       </view>
     </block>
 
+    <!--code标签, wxParse把他解析成为pre-->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}" bindlongpress="longPress" data-content="{{item.nodes[0].nodes[0].text}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="this">
+          <template is="wxParse1" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
     <block wx:elif="{{item.tag == 'br'}}">
       <template is="WxParseBr"></template>
     </block>
@@ -559,6 +617,15 @@
       </view>
     </block>
 
+    <!--code标签, wxParse把他解析成为pre-->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}" bindlongpress="longPress" data-content="{{item.nodes[0].nodes[0].text}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="this">
+          <template is="wxParse1" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
     <block wx:elif="{{item.tag == 'br'}}">
       <template is="WxParseBr"></template>
     </block>
@@ -630,6 +697,15 @@
       <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="this">
           <template is="wxParse8" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <!--code标签, wxParse把他解析成为pre-->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}" bindlongpress="longPress" data-content="{{item.nodes[0].nodes[0].text}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="this">
+          <template is="wxParse1" data="{{item}}" />
         </block>
       </view>
     </block>
@@ -710,6 +786,15 @@
       </view>
     </block>
 
+    <!--code标签, wxParse把他解析成为pre-->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}" bindlongpress="longPress" data-content="{{item.nodes[0].nodes[0].text}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="this">
+          <template is="wxParse1" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
     <block wx:elif="{{item.tag == 'br'}}">
       <template is="WxParseBr"></template>
     </block>
@@ -782,6 +867,15 @@
       <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="this">
           <template is="wxParse10" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <!--code标签, wxParse把他解析成为pre-->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}" bindlongpress="longPress" data-content="{{item.nodes[0].nodes[0].text}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="this">
+          <template is="wxParse1" data="{{item}}" />
         </block>
       </view>
     </block>
@@ -862,6 +956,15 @@
       </view>
     </block>
 
+    <!--code标签, wxParse把他解析成为pre-->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}" bindlongpress="longPress" data-content="{{item.nodes[0].nodes[0].text}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="this">
+          <template is="wxParse1" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
     <block wx:elif="{{item.tag == 'br'}}">
       <template is="WxParseBr"></template>
     </block>
@@ -934,6 +1037,15 @@
       <view bindtap="wxParseTagATap" class="wxParse-inline {{item.classStr}} wxParse-{{item.tag}}" data-src="{{item.attr.href}}" style="{{item.styleStr}}">
         <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="this">
           <template is="wxParse12" data="{{item}}" />
+        </block>
+      </view>
+    </block>
+
+    <!--code标签, wxParse把他解析成为pre-->
+    <block wx:elif="{{item.tag == 'pre'}}">
+      <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}" bindlongpress="longPress" data-content="{{item.nodes[0].nodes[0].text}}">
+        <block wx:for="{{item.nodes}}" wx:for-item="item" wx:key="this">
+          <template is="wxParse1" data="{{item}}" />
         </block>
       </view>
     </block>

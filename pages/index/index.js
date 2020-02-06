@@ -14,7 +14,7 @@ Page({
     showtab: 0, //顶部选项卡索引
     tabnav: {
       tabnum: 5,
-      tabitem: ["全部", "Java", "Android", "PHP", "Linux", "Nginx", "MySQL", "Redis", "PostgreSQL", "面试", "算法"]
+      tabitem: ["全部",  "小程序", "Java","Linux", "Redis", "Android", "PHP", "Nginx", "MySQL", "PostgreSQL", "面试", "算法"]
     }
   },
   //事件处理函数
@@ -44,6 +44,11 @@ Page({
   onReachBottom: function() {
     var that = this
     if (that.data.noMoreData) {
+      if (that.data.loading) {
+        that.setData({
+          loading: false,
+        })
+      }
       return
     }
     that.setData({
@@ -51,7 +56,7 @@ Page({
     })
 
     wx.request({
-      url: 'https://www.zhangbj.com/m/index',
+      url: app.globalData.urlPrefix + '/m/index',
       data: {
         topic: that.data.showtab == 0 ? '' : that.data.tabnav.tabitem[that.data.showtab],
         page: that.data.currentPage + 1,
@@ -111,7 +116,7 @@ Page({
       title: '加载中',
     });
     wx.request({
-      url: 'https://www.zhangbj.com/m/index',
+      url: app.globalData.urlPrefix + '/m/index',
       data: {
         topic: that.data.showtab == 0 ? '' : that.data.tabnav.tabitem[showtab],
         page: page,
