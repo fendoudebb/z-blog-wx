@@ -8,17 +8,17 @@
 - 管理系统开源地址：[https://github.com/fendoudebb/z-blog-dashboard](https://github.com/fendoudebb/z-blog-dashboard)
 
 ## 扫码体验
-[!mp.jpg](./images/mp.jpg)
+![mp.jpg](./images/mp.jpg)
 
 ## 版本信息
-- v1.1.0(未发布)
+- v1.1.0(2020/02/06)
     - 调整img标签样式，设置最大宽度100%
     - 调整table标签样式，表格无法横向移动问题
     - 调整搜索页搜索栏样式
     - 增加wxParse代码高亮显示
     - 增加wxParse代码块长按拷贝事件
     - 详情页添加official-account组件
-- v1.0.0(2020/2/1)
+- v1.0.0(2020/02/01)
     - 顶部滑动导航
     - 关键词搜索
     - 文章HTML渲染
