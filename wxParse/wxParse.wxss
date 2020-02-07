@@ -161,8 +161,9 @@ view {
 
 view .wxParse-code {
   display: inline-block;
-  padding: 0 12rpx;
-  background: rgba(27, 31, 35, 0.05);
+  padding: 0 6rpx;
+  color: #ff502c;
+  background-color: #fff5f5;
   border-radius: 4rpx;
   font-family: Menlo, Monaco, Consolas, Courier New, monospace;
   font-size: 24rpx;
@@ -170,6 +171,7 @@ view .wxParse-code {
 
 .wxParse-pre .wxParse-code {
   display: block;
+  background: rgba(27, 31, 35, 0.05);
   overflow-x: auto !important;
   border-radius: 6rpx;
   white-space: pre;
