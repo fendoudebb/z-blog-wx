@@ -14,14 +14,8 @@ Page({
     showtab: 0, //顶部选项卡索引
     tabnav: {
       tabnum: 5,
-      tabitem: ["全部",  "小程序", "Java","Linux", "Redis", "Android", "PHP", "Nginx", "MySQL", "PostgreSQL", "面试", "算法"]
+      tabitem: ["全部", "小程序", "Java", "Linux", "Redis", "Android", "PHP", "Nginx", "MySQL", "PostgreSQL", "面试", "算法"]
     }
-  },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
   },
   setTab: function(e) {
     var that = this
@@ -38,6 +32,22 @@ Page({
   onReady: function() {
 
   },
+
+  //下拉刷新
+  onPullDownRefresh: function() {
+    // wx.showNavigationBarLoading() //在标题栏中显示加载
+    // wx.showLoading({
+    //   title: '刷新中',
+    // });
+    // //模拟加载
+    // setTimeout(function() {
+    //   // complete
+    //   wx.hideLoading()
+    //   wx.hideNavigationBarLoading() //完成停止加载
+    //   wx.stopPullDownRefresh() //停止下拉刷新
+    // }, 1500);
+  },
+
   /**
    * 页面上拉触底事件的处理函数
    */
@@ -62,13 +72,13 @@ Page({
         page: that.data.currentPage + 1,
         size: 10
       },
-      header: {
-        'content-type': 'application/json'
-      },
+      method: 'GET',
+      responseType: 'text',
       success(res) {
         // console.log(res.data);
         if (res.data.code !== 200) {
           that.setData({
+            loading: false,
             topTipsType: 'error',
             topTipsMsg: '请求出错，请联系管理员',
           })
@@ -82,21 +92,18 @@ Page({
           posts: that.data.posts.concat(posts),
           currentPage: currentPage,
           totalPage: totalPage,
-          noMoreData: currentPage >= totalPage
+          noMoreData: currentPage >= totalPage,
+          loading: false,
         })
       },
       fail(reason) {
         console.log(reason)
         that.setData({
+          loading: false,
           topTipsType: 'error',
           topTipsMsg: '服务器忙，请稍后再试',
         })
       },
-      complete() {
-        that.setData({
-          loading: false,
-        })
-      }
     })
   },
 
@@ -122,15 +129,16 @@ Page({
         page: page,
         size: 10
       },
-      header: {
-        'content-type': 'application/json'
-      },
+      method: 'GET',
+      responseType: 'text',
       success(res) {
         // console.log(res.data);
         if (res.data.code !== 200) {
           that.setData({
             topTipsType: 'error',
             topTipsMsg: '请求出错，请联系管理员',
+          }, function() {
+            wx.hideLoading()
           })
           return
         }
@@ -143,6 +151,8 @@ Page({
           currentPage: currentPage,
           totalPage: totalPage,
           noMoreData: currentPage >= totalPage
+        }, function() {
+          wx.hideLoading()
         })
       },
       fail(reason) {
@@ -150,11 +160,10 @@ Page({
         that.setData({
           topTipsType: 'error',
           topTipsMsg: '服务器忙，请稍后再试',
+        }, function() {
+          wx.hideLoading()
         })
       },
-      complete() {
-        wx.hideLoading()
-      }
     })
   }
 

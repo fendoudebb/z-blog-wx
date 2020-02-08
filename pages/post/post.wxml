@@ -7,21 +7,23 @@
 
   <view wx:if="{{!loading}}">
     <view style="padding: 32rpx 48rpx">
-      <view class="post-title">{{title}}</view>
-      <block wx:for="{{topics}}" wx:key="this" wx:for-item="value" wx:for-index="index">
+      <view class="post-title">{{post.title}}</view>
+      <block wx:for="{{post.topics}}" wx:key="this" wx:for-item="value" wx:for-index="index">
         <view class="badge-a">{{value}}</view>
       </block>
-      <view class="badge-a" wx:if="{{commentCount > 0}}">评论 {{commentCount}}</view>
-      <text class="text-secondary" style="margin-left: 16rpx!important;">大约 {{postWordCount}} 字</text>
-      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+      <view class="badge-a" wx:if="{{post.commentCount > 0}}">评论 {{post.commentCount}}</view>
+      <text class="text-secondary" style="margin-left: 16rpx!important;">大约 {{post.postWordCount}} 字</text>
+      <!-- <template is="wxParse" data="{{wxParseData:article.nodes}}" /> -->
 
-      <view class="text-secondary" style="margin-top:40rpx">阅读 {{pv}} · 发布于 {{tools.dateFormat(postTime,'yyyy-MM-dd')}}</view>
+      <parser html="{{post.contentHtml}}" selectable />
+
+      <view class="text-secondary" style="margin-top:40rpx">阅读 {{post.pv}} · 发布于 {{tools.dateFormat(post.postTime.$date.$numberLong, 'yyyy-MM-dd')}}</view>
     </view>
 
     <view style="margin:32rpx 36rpx;">
-      <button style="width:40%;font-size:24rpx;display:inline-block;" open-type="share" type="primary" size="default" data-post-id="{{postId}}" data-title="{{title}}">分享</button>
+      <button style="width:40%;font-size:24rpx;display:inline-block;" open-type="share" type="primary" size="default" data-post-id="{{postId}}" data-title="{{post.title}}">分享</button>
       <view style="width:20%;display:inline-block"></view>
-      <button open-type="contact" show-message-card send-message-title="{{title}}" session-from="/pages/post/post?from=contact&postId={{postId}}" send-message-path="/pages/post/post?from=contact&postId={{postId}}" bindcontact="handleContact" style="width:40%;font-size:24rpx;display:inline-block;background:rgba(27,31,35,.05)">联系管理员</button>
+      <button open-type="contact" show-message-card send-message-title="{{post.title}}" session-from="/pages/post/post?from=contact&postId={{postId}}" send-message-path="/pages/post/post?from=contact&postId={{postId}}" bindcontact="handleContact" style="width:40%;font-size:24rpx;display:inline-block;background:rgba(27,31,35,.05)">联系管理员</button>
     </view>
   </view>
   

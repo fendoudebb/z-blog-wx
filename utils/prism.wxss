@@ -7,7 +7,7 @@ https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+cli
  */
 
 .wxParse-code[class*="language-"],
-.wxParse-pre[class*="language-"] {
+.__pre {
 	color: #ccc;
 	background: none;
 	font-size: 24rpx;
@@ -28,7 +28,7 @@ https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+cli
 }
 
 :not(pre) > .wxParse-code[class*="language-"],
-.wxParse-pre[class*="language-"] {
+.__pre {
 	background: #2d2d2d;
 }
 

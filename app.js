@@ -1,6 +1,36 @@
 //app.js
 App({
   onLaunch: function () {
+    wx.getStorageInfo({
+      success(res) {
+      console.log(res.keys);
+      res.keys.forEach((value, index, array) => {
+        if(value.indexOf("post-date-") === 0) {
+          console.log(value)
+          wx.getStorage({
+            key: value,
+            success: function(res) {
+              var date = res.data;
+              console.log(res)
+              if (new Date().getTime() - date.getTime() > 1) {
+                wx.removeStorage({
+                  key: value,
+                  success: function(res) {
+                    console.log(res)
+                  },
+                  fail: function(res) {
+                    console.log(res)
+                  }
+                })
+              }
+            },
+          })
+        }
+      })
+        console.log(res.currentSize)
+        console.log(res.limitSize)
+      }
+    })
     // // 展示本地存储能力
     // var logs = wx.getStorageSync('logs') || []
     // logs.unshift(Date.now())
@@ -35,7 +65,7 @@ App({
   },
   globalData: {
     // urlPrefix: 'https://www.zhangbj.com',
-    urlPrefix: 'http://192.168.0.112',
+    urlPrefix: 'http://192.168.1.4',
     userInfo: null
   }
 })

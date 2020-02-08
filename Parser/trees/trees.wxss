@@ -1,0 +1,259 @@
+/* 可在这里引入需要的自定义样式 */
+
+/* 链接受到点击的hover-class，可自定义修改 */
+.navigator-hover {
+  opacity: 0.7;
+  text-decoration: underline;
+}
+/* 以下内容不建议修改 */
+:host {
+  display: inherit;
+  float: inherit;
+}
+._b, ._strong {
+  font-weight: bold;
+}
+._big {
+  font-size: 1.2em;
+}
+._small {
+  font-size: 0.8em;
+}
+._blockquote, ._div, ._p, ._ul, ._ol, ._li {
+  display:block;
+}
+
+
+._code {
+  font-family: monospace;
+}
+._del {
+  text-decoration: line-through;
+}
+._em, ._i {
+  font-style: italic;
+}
+
+._ins {
+  text-decoration: underline;
+}
+._ol-before {
+  width: 36px;
+  text-align: right;
+  margin-right: 5px;
+  flex-shrink: 0;
+}
+._ul-before {
+  margin-left: 23px;
+  margin-right: 12px;
+  line-height: normal;
+  flex-shrink: 0;
+}
+._ul-type1 {
+  width:0.3em;
+  height:0.3em;
+  line-height:0.3em;
+  color:inherit;
+  display:inline-block;
+  overflow:hidden;
+}
+._ul-type2 {
+  width:0.23em;
+  height:0.23em;
+  background-color:transparent;
+  border:0.05em solid black;
+  border-radius:50%;
+  display:inline-block;
+}
+._q::before {
+  content: '"';
+}
+._q::after {
+  content: '"';
+}
+._a, ._abbr, ._b, ._big, ._small, ._code, ._del, ._em, ._i, ._ins, ._label, ._q, ._span, ._strong {
+  display: inline;
+}
+.__bdi, .__bdo, .__ruby, .__rt, .__sub, .__sup {
+  display: inline-block !important;
+}
+._video {
+  background-color: black;
+  width: 300px;
+  height: 225px;
+  display: inline-block;
+  position: relative;
+}
+._video::after {
+  content: '';
+  border-width: 15px 0 15px 30px;
+  border-style: solid;
+  border-color: transparent transparent transparent white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -15px 0 0 -15px;
+}
+
+._a {
+  color:#366092;word-break:break-all;padding:1.5px 0 1.5px 0
+}
+
+.__h1 {
+  font-size: 38rpx;
+}
+
+.__h2 {
+  font-size: 26rpx;
+  padding-bottom: 10rpx;
+  margin-top: 50rpx;
+  margin-bottom: 20rpx;
+  border-bottom: 1rpx solid #ececec;
+}
+
+.__h3 {
+  font-size: 28rpx;
+  margin-top: 50rpx;
+  margin-bottom: 20rpx;
+}
+
+.__h4 {
+  font-size: 26rpx;
+  margin-top: 30rpx;
+  margin-bottom: 16rpx;
+}
+
+.__h5 {
+  font-size: 24rpx;
+  margin-top: 24rpx;
+  margin-bottom: 12rpx;
+}
+
+.__h6 {
+  font-size: 24rpx;
+  margin-top: 18rpx;
+  margin-bottom: 8rpx;
+}
+
+.__h1, .__h2, .__h3, .__h4, .__h5, .__h6, .__b, .__strong {
+  font-weight: bold;
+}
+
+.__p {
+  display: block;
+  font-size: 26rpx;
+  margin-top: 26rpx;
+  margin-bottom: 26rpx;
+}
+
+.__blockquote {
+  margin: 28rpx 0;
+  padding: 20rpx 40rpx 20rpx 30rpx;
+  font-size: 28rpx;
+  border-left: 6rpx solid #4caf50;
+  background-color: #e7f6ed;
+  color: rgb(136, 136, 136);
+}
+
+.__blockquote .__p {
+  line-height: 1.6;
+  word-wrap: break-word;
+  margin: 0;
+}
+
+.__code {
+  display: inline-block;
+  padding: 0 6rpx;
+  color: #ff502c;
+  background-color: #fff5f5;
+  border-radius: 4rpx;
+  font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+  font-size: 24rpx;
+}
+
+.__pre {
+  display: block;
+  background: rgba(27, 31, 35, 0.05);
+  overflow-x: auto !important;
+  border-radius: 6rpx;
+  white-space: pre;
+  word-wrap: normal;
+  padding: 16rpx 24rpx !important;
+  line-height: 40rpx;
+  margin: 12rpx 0;
+}
+
+/* .__pre::before, .__pre::after {
+  letter-spacing: 0;
+  content: '';
+} */
+
+.__table-area {
+  overflow-x: auto;
+  margin: 20rpx auto;
+}
+
+.__table {
+  border-collapse: collapse;
+  table-layout: fixed;
+  word-break: break-word;
+  empty-cells: show; /*单元格无内容依旧绘制边框*/
+  min-width: 100%;
+  border-color: grey;
+  text-align: center
+}
+
+.__table .__td, .__table .__th {
+  white-space: nowrap; /*表头内容强制在一行显示*/
+  border: 1px solid #e9eaec;
+  height: 60rpx;
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  color: #495060;
+  font-size: 24rpx;
+}
+
+.__table .__th {
+  background-color: #F8F8F9;
+}
+
+.__table .__tr:nth-child(odd) {
+  background: #fff;
+}
+
+.__table .__tr:nth-child(even) {
+  background: #F8F8F9;
+}
+
+.__table .__tr:hover {
+  background: #efefef;
+}
+
+.__li {
+  font-size: 26rpx;
+}
+
+.__ul .__li{
+  list-style-type: disc;
+  margin: 0 0 16rpx -20rpx;
+}
+
+.__ol .__li{
+  list-style-type: decimal;
+  margin: 0 0 16rpx -20rpx;
+}
+
+.__li .__ol, .__li .__ul {
+  margin: 10px 0;
+}
+
+.__li .__li {
+  list-style-type: circle;
+}
+
+.__li .__li .__li {
+  list-style-type: square;
+}
+
+
+@import "../../utils/prism.wxss";

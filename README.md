@@ -12,8 +12,9 @@
 
 ## 版本信息
 - v1.2.0(未发布)
+    - 使用Parser替换wxParser渲染富文本
     - 调整p标签下的code标签颜色和背景
-
+    - 添加文章缓存
 - v1.1.0(2020/02/06)
     - 调整img标签样式，设置最大宽度100%
     - 调整table标签样式，表格无法横向移动问题
@@ -28,4 +29,4 @@
     - 调整wxParse样式
 
 ## 感谢
-HTML转小程序原生控件-wxParse：[https://github.com/icindy/wxParse](https://github.com/icindy/wxParse)
+HTML转小程序原生控件-Parser：[https://github.com/jin-yufeng/Parser](https://github.com/jin-yufeng/Parser)

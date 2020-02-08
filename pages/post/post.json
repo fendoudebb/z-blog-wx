@@ -1,6 +1,6 @@
 {
   "usingComponents": {
     "mp-toptips": "../../miniprogram_npm/weui-miniprogram/toptips/toptips",
-    "mp-loading": "../../miniprogram_npm/weui-miniprogram/loading/loading"
+    "parser": "/Parser/index"
   }
 }
