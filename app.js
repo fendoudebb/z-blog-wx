@@ -15,6 +15,15 @@ App({
               if (new Date().getTime() - date.getTime() > 1) {
                 wx.removeStorage({
                   key: value,
+                  success: function (res) {
+                    console.log(res)
+                  },
+                  fail: function (res) {
+                    console.log(res)
+                  }
+                })
+                wx.removeStorage({
+                  key: 'post-json-' + value.split('-')[2],
                   success: function(res) {
                     console.log(res)
                   },

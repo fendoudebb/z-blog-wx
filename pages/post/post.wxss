@@ -1,5 +1,4 @@
 /* pages/post/post.wxss */
-@import "../../wxParse/wxParse.wxss";
 
 .post-title {
   font-size: 38rpx;

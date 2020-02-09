@@ -9,7 +9,7 @@
     <view style="padding: 32rpx 48rpx">
       <view class="post-title">{{post.title}}</view>
       <block wx:for="{{post.topics}}" wx:key="this" wx:for-item="value" wx:for-index="index">
-        <view class="badge-a">{{value}}</view>
+        <view class="badge-a" catchtap="navToTopic" data-topic="{{value}}">{{value}}</view>
       </block>
       <view class="badge-a" wx:if="{{post.commentCount > 0}}">评论 {{post.commentCount}}</view>
       <text class="text-secondary" style="margin-left: 16rpx!important;">大约 {{post.postWordCount}} 字</text>

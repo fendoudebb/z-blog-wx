@@ -24,11 +24,16 @@
   </view>
 
   <block wx:for="{{posts}}" wx:key="this">
-    <navigator url="/pages/post/post?from=index&postId={{item.postId}}" hover-class="navigator-hover">
+    <navigator url="/pages/post/post?from=index&postId={{item.postId}}" hover-class="none">
       <view class="shadow index-post-item">
         <text class="index-post-title ellipsis">{{item.title}}</text>
         <text class="index-post-desc">{{tools.formatDesc(item.description)}}</text>
-        <text class="index-post-info">{{tools.getDateDiff(item.postTime.$date.$numberLong)}}，标签：<block wx:for="{{item.topics}}" wx:key="this" wx:for-item="value" wx:for-index="index"><block wx:if="{{index !== item.topics.length-1}}">{{value}}/</block><block wx:else>{{value}}</block></block>，阅读：{{item.pv}}</text>
+        <text class="index-post-info">{{tools.getDateDiff(item.postTime.$date.$numberLong)}}，标签：</text>
+        <block wx:for="{{item.topics}}" wx:key="this" wx:for-item="value" wx:for-index="index">
+          <text class="index-post-info index-post-topic" catchtap="navToTopic" data-topic="{{value}}">{{value}}</text>
+          <text wx:if="{{index !== item.topics.length-1}}" class="index-post-info">/</text>
+        </block>
+        <text class="index-post-info">，阅读：{{item.pv}}</text>
       </view>
     </navigator>
   </block>

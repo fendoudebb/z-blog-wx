@@ -204,8 +204,15 @@ Page({
     console.log("official-account bind error#status=" + status + ", errMsg=" + errMsg)
   },
 
-  requestData: function() {
-    
-  }
+  navToTopic: function (e) {
+    var topic = e.currentTarget.dataset.topic
+    wx.navigateTo({
+      url: '/pages/topic/topic?from=topic&topic=' + topic,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+  },
+
 
 })

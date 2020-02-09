@@ -165,6 +165,16 @@ Page({
         })
       },
     })
+  },
+
+  navToTopic: function(e) {
+    var topic = e.currentTarget.dataset.topic
+    wx.navigateTo({
+      url: '/pages/topic/topic?from=index&topic=' + topic,
+      success: function(res) {},
+      fail: function(res) {},
+      complete: function(res) {},
+    })
   }
 
   // getUserInfo: function(e) {

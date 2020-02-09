@@ -33,7 +33,11 @@
         <view class="shadow index-post-item">
           <rich-text class="index-post-title ellipsis" nodes="{{m1.format(item.title)}}"></rich-text>
           <rich-text class="index-post-desc" nodes="{{m1.format(item.content)}}"></rich-text>
-          <text class="index-post-info">{{item.postTime}}，标签：<block wx:for="{{item.topics}}" wx:key="this" wx:for-item="value" wx:for-index="index"><block wx:if="{{index !== item.topics.length-1}}">{{value}}/</block><block wx:else>{{value}}</block></block></text>
+          <text class="index-post-info">{{item.postTime}}，标签：</text>
+          <block wx:for="{{item.topics}}" wx:key="this" wx:for-item="value" wx:for-index="index">
+            <text class="index-post-info index-post-topic" catchtap="navToTopic" data-topic="{{value}}">{{value}}</text>
+            <text wx:if="{{index !== item.topics.length-1}}" class="index-post-info">/</text>
+          </block>
         </view>
       </navigator>
     </block>

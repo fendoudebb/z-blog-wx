@@ -119,6 +119,17 @@ Page({
   onShareAppMessage: function() {
 
   },
+
+  navToTopic: function (e) {
+    var topic = e.currentTarget.dataset.topic
+    wx.navigateTo({
+      url: '/pages/topic/topic?from=search&topic=' + topic,
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+  },
+
   bindKeyInput: function(e) {
     this.setData({
       inputValue: e.detail.value
