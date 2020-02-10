@@ -1,0 +1,15 @@
+/* pages/topic/topic.wxss */
+
+.topic-view {
+  min-height: 300rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topic-text {
+  display: inline-block;
+  color: white;
+  font-size: 48rpx;
+  font: bold;
+}

@@ -1,0 +1,39 @@
+<!--pages/topic/topic.wxml-->
+<wxs src="../../utils/common.wxs" module="tools" />
+
+<mp-toptips msg="{{topTipsMsg}}" type="{{topTipsType}}" show="{{topTipsMsg}}"></mp-toptips>
+
+<view style="background-color:{{bgColor}}" class="topic-view">
+  <text class="topic-text">{{topic}}</text>
+</view>
+
+<view class="sticky">
+  <block wx:for="{{posts}}" wx:key="this">
+    <navigator url="/pages/post/post?from=topic&postId={{item.postId}}" hover-class="none">
+      <view class="shadow index-post-item">
+        <text class="index-post-title ellipsis">{{item.title}}</text>
+        <text class="index-post-desc">{{tools.formatDesc(item.description)}}</text>
+        <view class="ellipsis">
+          <text class="index-post-info">{{tools.getDateDiff(item.postTime.$date.$numberLong)}}，标签：</text>
+          <block wx:for="{{item.topics}}" wx:key="this" wx:for-item="value" wx:for-index="index">
+            <text style="{{value==topic?'color:red;':''}}" class="index-post-info index-post-topic" catchtap="navToTopic" data-topic="{{value}}">{{value}}</text>
+            <text wx:if="{{index !== item.topics.length-1}}" class="index-post-info">/</text>
+          </block>
+          <text class="index-post-info">，阅读：{{item.pv}}</text>
+        </view>
+      </view>
+    </navigator>
+  </block>
+
+  <view>
+    <!-- <mp-loading type="circle"></mp-loading> -->
+    <!-- <mp-loading type="dot-white"></mp-loading> -->
+    <mp-loading type="circle" show="{{loading}}"></mp-loading>
+  </view>
+
+  <view class='main_view' wx:if="{{noMoreData}}">
+    <text class='befor'></text>
+    <text class='reason_txt'>我也是有底线的</text>
+    <text class='after'></text>
+  </view>
+</view>
