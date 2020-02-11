@@ -1,6 +1,7 @@
 <!--pages/search/search.wxml-->
 <wxs module="m1">
   var temp = function(value) {
+    value = "<div style='overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'>" + value + "</div>"
     value = value.replace(getRegExp('<em', 'g'), '<em class="search-em"');
     return value;
   }
@@ -21,17 +22,17 @@
     </view>
   </view>
 
-  <view wx:if="{{loading}}">
+  <view>
     <!-- <mp-loading type="circle"></mp-loading> -->
     <!-- <mp-loading type="dot-white"></mp-loading> -->
     <mp-loading type="circle" show="{{loading}}"></mp-loading>
   </view>
 
-  <view wx:else>
+  <view>
     <block wx:for="{{hits}}" wx:key="this">
       <navigator url="/pages/post/post?from=search&postId={{item.postId}}" hover-class="navigator-hover">
         <view class="shadow index-post-item">
-          <rich-text class="index-post-title ellipsis" nodes="{{m1.format(item.title)}}"></rich-text>
+          <rich-text class="index-post-title" nodes="{{m1.format(item.title)}}"></rich-text>
           <rich-text class="index-post-desc" nodes="{{m1.format(item.content)}}"></rich-text>
           <text class="index-post-info">{{item.postTime}}，标签：</text>
           <block wx:for="{{item.topics}}" wx:key="this" wx:for-item="value" wx:for-index="index">

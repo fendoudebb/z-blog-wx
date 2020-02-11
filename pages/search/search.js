@@ -64,6 +64,11 @@ Page({
   onReachBottom: function () {
     var that = this
     if (that.data.noMoreData) {
+      if (that.data.loading) {
+        that.setData({
+          loading: false,
+        })
+      }
       return
     }
     that.setData({
@@ -76,13 +81,13 @@ Page({
         page: that.data.currentPage + 1,
         size: 10
       },
-      header: {
-        'content-type': 'application/json'
-      },
+      method: 'GET',
+      responseType: 'text',
       success(res) {
         // console.log(res.data);
         if (res.data.code !== 200) {
           that.setData({
+            loading: false,
             topTipsType: 'error',
             topTipsMsg: '请求出错，请联系管理员',
           })
@@ -95,19 +100,16 @@ Page({
           hits: that.data.hits.concat(hits),
           currentPage: currentPage,
           totalPage: totalPage,
-          noMoreData: currentPage >= totalPage
+          noMoreData: currentPage >= totalPage,
+          loading: false,
         })
       },
       fail(reason) {
         console.log(reason)
         that.setData({
+          loading: false,
           topTipsType: 'error',
           topTipsMsg: '服务器忙，请稍后再试',
-        })
-      },
-      complete() {
-        that.setData({
-          loading: false,
         })
       }
     })
