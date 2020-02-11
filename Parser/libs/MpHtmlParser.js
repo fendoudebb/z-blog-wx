@@ -211,6 +211,10 @@ class MpHtmlParser {
       node.content = this._parserCodeContent.shift();
     }
 
+    if (node.name == "table") {
+      node.attrs.style = "border-collapse:collapse;min-width:100%;"
+    }
+
     // 处理表格的边框
     /*if (node.name == "table") {
       if (node.attrs.border)

@@ -193,6 +193,7 @@
   margin: 20rpx auto;
 }
 
+/* 此处设置min-width无效，需在node.style.attrs下设置，可参考MpHtmlParser.js */
 .__table {
   border-collapse: collapse;
   table-layout: fixed;
