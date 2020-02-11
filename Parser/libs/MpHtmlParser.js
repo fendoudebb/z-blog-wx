@@ -39,7 +39,7 @@ class MpHtmlParser {
       var that = this
       this.data = this.data.replace(/<pre><code([\s\S]*?)>([\s\S]*?)<\/code[\s\S]*?><\/pre>/g, function($, $1, $2) {
           that._parserCodeContent.push($2)
-        return "<pre><code" + $1 + '>' + config.highlight($2, "<code" + $1 + '>') + "</code><\/pre>";
+        return "<pre><code" + $1 + '>' + config.highlight($2, "<code" + $1 + '>') + "</code></pre>";
       })
     }
     // console.log(this._parserCodeContent)
