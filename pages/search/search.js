@@ -85,7 +85,7 @@ Page({
       responseType: 'text',
       success(res) {
         // console.log(res.data);
-        if (res.data.code !== 200) {
+        if (res.data.code !== 0) {
           that.setData({
             loading: false,
             topTipsType: 'error',
@@ -162,7 +162,7 @@ Page({
       },
       success(res) {
         // console.log(res.data);
-        if (res.data.code !== 200) {
+        if (res.data.code !== 0) {
           that.setData({
             topTipsType: 'error',
             topTipsMsg: '请求出错，请联系管理员',

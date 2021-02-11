@@ -17,7 +17,7 @@
 
       <parser html="{{post.contentHtml}}" selectable />
 
-      <view class="text-secondary" style="margin-top:40rpx">阅读 {{post.pv}} · 发布于 {{tools.dateFormat(post.postTime.$date.$numberLong, 'yyyy-MM-dd')}}</view>
+      <view class="text-secondary" style="margin-top:40rpx">阅读 {{post.pv}} · 发布于 {{tools.getDateDiff(post.postTime)}}</view>
     </view>
 
     <view style="margin:32rpx 36rpx;">

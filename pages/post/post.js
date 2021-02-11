@@ -60,7 +60,7 @@ Page({
             method: 'GET',
             responseType: 'text',
             success(res) {
-              if (res.data.code !== 200) {
+              if (res.data.code !== 0) {
                 that.setData({
                   loading: false,
                   topTipsType: 'error',

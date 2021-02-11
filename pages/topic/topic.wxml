@@ -14,7 +14,7 @@
         <text class="index-post-title ellipsis">{{item.title}}</text>
         <text class="index-post-desc">{{tools.formatDesc(item.description)}}</text>
         <view class="ellipsis">
-          <text class="index-post-info">{{tools.getDateDiff(item.postTime.$date.$numberLong)}}，标签：</text>
+          <text class="index-post-info">{{tools.getDateDiff(item.postTime)}}，标签：</text>
           <block wx:for="{{item.topics}}" wx:key="this" wx:for-item="value" wx:for-index="index">
             <text style="{{value==topic?'color:red;':''}}" class="index-post-info index-post-topic" catchtap="navToTopic" data-topic="{{value}}">{{value}}</text>
             <text wx:if="{{index !== item.topics.length-1}}" class="index-post-info">/</text>

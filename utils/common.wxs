@@ -62,7 +62,7 @@ function getDateDiff(dateTimeStamp) {
   var minEnd = diffValue / minute;
   var yearEnd = diffValue / year;
   if (yearEnd >= 1) {
-    result = dateTime;
+    result = dateFormat(dateTimeStamp, "yyyy.MM.dd");
   } else if (monthEnd >= 1) {
     result = "" + parseInt(monthEnd) + "月前";
   } else if (weekEnd >= 1) {
@@ -85,7 +85,7 @@ var formatDesc = function (value) {
   return value;
 }
 
-//tools.dateFormat(item.postTime.$date.$numberLong,'yyyy.MM.dd')
+//tools.dateFormat(item.postTime,'yyyy.MM.dd')
 module.exports = {
   log: log,
   dateFormat: dateFormat,
