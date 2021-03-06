@@ -88,6 +88,8 @@ var highlight = function (content, attrs) {
   content = content.replace(/&lt;/g, '<');
   content = content.replace(/&gt;/g, '>');
   content = content.replace(/&amp;/g, '&');
+  content = content.replace(/&#39;/g, "'");
+  content = content.replace(/&quot;/g, '"');
   var m = attrs.match(/"languages?-(.*)"/i);
   var lang = m ? m[1] : 'js'
   return Prism.highlight(content, Prism.languages[lang], lang)
