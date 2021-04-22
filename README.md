@@ -4,7 +4,7 @@
 [程序员技术之旅](https://www.zhangbj.com)小程序版本。
 
 - 微信小程序开源地址：[https://github.com/fendoudebb/z-blog-wx](https://github.com/fendoudebb/z-blog-wx)
-- Web端项目开源地址：[https://github.com/fendoudebb/z-blog](https://github.com/fendoudebb/z-blog)
+- Web端项目开源地址：[https://github.com/fendoudebb/z-blog-openresty](https://github.com/fendoudebb/z-blog-openresty)
 - 管理系统开源地址：[https://github.com/fendoudebb/z-blog-dashboard](https://github.com/fendoudebb/z-blog-dashboard)
 
 ## 扫码体验
