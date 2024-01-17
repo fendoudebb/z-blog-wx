@@ -2,11 +2,12 @@
 <wxs module="m1">
   var temp = function(value) {
     value = "<div style='overflow:hidden;white-space:nowrap;text-overflow:ellipsis;'>" + value + "</div>"
-    value = value.replace(getRegExp('<em', 'g'), '<em class="search-em"');
+    value = value.replace(getRegExp('<b', 'g'), '<b class="search-em"');
     return value;
   }
   module.exports.format = temp;
 </wxs>
+<wxs src="../../utils/common.wxs" module="tools" />
 <view>
 
   <mp-toptips msg="{{topTipsMsg}}" type="{{topTipsType}}" show="{{topTipsMsg}}"></mp-toptips>
@@ -29,14 +30,14 @@
   </view>
 
   <view>
-    <block wx:for="{{hits}}" wx:key="this">
+    <block wx:for="{{posts}}" wx:key="this">
       <navigator url="/pages/post/post?from=search&postId={{item.postId}}" hover-class="navigator-hover">
         <view class="shadow index-post-item">
           <rich-text class="index-post-title" nodes="{{m1.format(item.title)}}"></rich-text>
-          <rich-text class="index-post-desc" nodes="{{m1.format(item.content)}}"></rich-text>
-          <text class="index-post-info">{{item.postTime}}，标签：</text>
+          <rich-text class="index-post-desc" nodes="{{m1.format(item. description)}}"></rich-text>
+          <text class="index-post-info">{{tools.getDateDiff(item.postTime)}} 标签：</text>
           <block wx:for="{{item.topics}}" wx:key="this" wx:for-item="value" wx:for-index="index">
-            <text class="index-post-info index-post-topic" catchtap="navToTopic" data-topic="{{value}}">{{value}}</text>
+            <rich-text class="index-post-info index-post-topic" catchtap="navToTopic" data-topic="{{value}}" nodes="{{m1.format(value)}}"></rich-text>
             <text wx:if="{{index !== item.topics.length-1}}" class="index-post-info">/</text>
           </block>
         </view>
@@ -44,7 +45,7 @@
     </block>
   </view>
 
-  <view class='main_view' wx:if="{{noMoreData}}">
+  <view class='main_view' wx:if="{{!next}}">
     <text class='befor'></text>
     <text class='reason_txt'>我也是有底线的</text>
     <text class='after'></text>

@@ -13,7 +13,8 @@ Page({
     focus: true,
     loading: false,
     inputValue: '',
-    hits: [],
+    posts: [],
+    next: true
   },
 
   /**
@@ -63,7 +64,7 @@ Page({
    */
   onReachBottom: function () {
     var that = this
-    if (that.data.noMoreData) {
+    if (!that.data.next) {
       if (that.data.loading) {
         that.setData({
           loading: false,
@@ -78,8 +79,7 @@ Page({
     wx.request({
       url: app.globalData.urlPrefix + '/m/search/' + that.data.inputValue,
       data: {
-        page: that.data.currentPage + 1,
-        size: 10
+        page: that.data.currentPage + 1
       },
       method: 'GET',
       responseType: 'text',
@@ -93,14 +93,11 @@ Page({
           })
           return
         }
-        var hits = res.data.data.hits;
-        var currentPage = res.data.data.currentPage;
-        var totalPage = res.data.data.totalPage;
+        var posts = res.data.data.posts;
         that.setData({
-          hits: that.data.hits.concat(hits),
-          currentPage: currentPage,
-          totalPage: totalPage,
-          noMoreData: currentPage >= totalPage,
+          posts: that.data.posts.concat(posts),
+          currentPage: that.data.currentPage + 1,
+          next: res.data.data.next,
           loading: false,
         })
       },
@@ -123,7 +120,7 @@ Page({
   },
 
   navToTopic: function (e) {
-    var topic = e.currentTarget.dataset.topic
+    var topic = e.currentTarget.dataset.topic?.replace('<b>', '').replace('</b>', '')
     wx.navigateTo({
       url: '/pages/topic/topic?from=search&topic=' + topic,
       success: function (res) { },
@@ -154,8 +151,7 @@ Page({
     wx.request({
       url: app.globalData.urlPrefix + '/m/search/' + that.data.inputValue,
       data: {
-        page: 1,
-        size: 10
+        page: 1
       },
       header: {
         'content-type': 'application/json'
@@ -169,15 +165,10 @@ Page({
           })
           return
         }
-        var hits = res.data.data.hits;
-        var currentPage = res.data.data.currentPage;
-        var totalPage = res.data.data.totalPage;
-
         that.setData({
-          hits: hits,
-          currentPage: currentPage,
-          totalPage: totalPage,
-          noMoreData: currentPage >= totalPage
+          posts: res.data.data.posts,
+          currentPage: 1,
+          next: res.data.data.next
         })
       },
       fail(reason) {

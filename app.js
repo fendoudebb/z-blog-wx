@@ -74,7 +74,7 @@ App({
   },
   globalData: {
     // urlPrefix: 'https://www.zhangbj.com',
-    urlPrefix: 'http://192.168.1.4',
+    urlPrefix: 'http://localhost:9527',
     userInfo: null
   }
 })

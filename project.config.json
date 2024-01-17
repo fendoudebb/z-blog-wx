@@ -1,10 +1,11 @@
 {
   "description": "项目配置文件",
   "packOptions": {
-    "ignore": []
+    "ignore": [],
+    "include": []
   },
   "setting": {
-    "urlCheck": false,
+    "urlCheck": true,
     "es6": true,
     "postcss": true,
     "minified": true,
@@ -31,46 +32,25 @@
     "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
-    "minifyWXSS": true
+    "minifyWXSS": true,
+    "ignoreDevUnusedFiles": false
   },
   "compileType": "miniprogram",
   "libVersion": "2.10.1",
   "appid": "wx070cafc25182dfed",
   "projectname": "z-blog",
-  "debugOptions": {
-    "hidedInDevtools": []
-  },
-  "isGameTourist": false,
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
-      "list": []
-    },
-    "plugin": {
-      "list": []
-    },
-    "game": {
-      "currentL": -1,
-      "list": []
-    },
-    "gamePlugin": {
-      "list": []
-    },
     "miniprogram": {
       "list": [
         {
-          "id": 0,
           "name": "pages/post/post",
           "pathName": "pages/post/post",
           "query": "postId=355",
           "scene": 1011
         },
         {
-          "id": 1,
           "name": "pages/topic/topic",
           "pathName": "pages/topic/topic",
           "query": "topic=Spring Boot",
@@ -78,5 +58,9 @@
         }
       ]
     }
+  },
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
   }
 }
