@@ -73,8 +73,7 @@ App({
     // })
   },
   globalData: {
-    // urlPrefix: 'https://www.zhangbj.com',
-    urlPrefix: 'http://localhost:9527',
+    urlPrefix: wx.getAccountInfoSync().miniProgram.envVersion === 'develop' ? 'http://localhost:9527' : 'https://www.zhangbj.com',
     userInfo: null
   }
 })
